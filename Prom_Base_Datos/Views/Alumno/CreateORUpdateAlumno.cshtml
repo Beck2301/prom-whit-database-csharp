@@ -1,0 +1,54 @@
+﻿<!--Agregamos el modelo en el formulario-->
+@model Prom_Base_Datos.Models.Alumno
+@{
+    /**/
+
+    ViewBag.Title = "CreateORUpdateAlumno";
+}
+<br />
+<center>
+    @if (Model.id > 0)
+    {
+        <h3>Editar Alumno</h3>
+    }
+    else
+    {
+        <h3>Agregar Alumno</h3>
+    }
+
+
+</center>
+
+@using (Html.BeginForm("CreateORUpdateAlumno", "Alumno", FormMethod.Post))
+{
+    @Html.HiddenFor(x => x.id)
+    @Html.HiddenFor(x => x.promedio)
+    @Html.HiddenFor(x => x.estado)
+
+
+    <div class="form-group">
+        <label for="exampleInputEmail1">Nombre</label>
+        @Html.TextBoxFor(x => x.nombre, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.nombre, null, new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail1">Nota 1</label>
+        @Html.TextBoxFor(x => x.nota1, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.nota1, null, new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail1">Nota 2</label>
+        @Html.TextBoxFor(x => x.nota2, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.nota2, null, new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail1">Nota 3</label>
+        @Html.TextBoxFor(x => x.nota3, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.nota3, null, new { @class = "text-danger" })
+    </div>
+    <input type="submit" class="btn btn-primary" value="Enviar datos"/>
+
+
+}
+
+ 

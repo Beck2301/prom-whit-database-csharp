@@ -1,0 +1,59 @@
+﻿
+@using Prom_Base_Datos.Models
+@{
+    ViewBag.Title = "MostrarDatos";
+    //creamos variable 
+    List<Alumno> lista = ViewBag.Datos!= null ? ViewBag.Datos : new List<Alumno>();
+}
+
+<center>
+    <h1>Listado de alumnos</h1>
+</center>
+<br />
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Nota 1</th>
+            <th scope="col">Nota 2</th>
+            <th scope="col">Nota 3</th>
+            <th scope="col">Promedio</th>
+            <th scope="col">Estado</th>
+            <th>Acción</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (lista.Count() > 0)
+        {
+            foreach (var a in lista)
+            {
+        <tr>
+            <th scope="row">@a.id</th>
+            <td>@a.nombre</td>
+            <td>@a.nota1</td>
+            <td>@a.nota2</td>
+            <td>@a.nota3</td>
+            <td>@a.promedio</td>
+            <td @if (a.estado == "Aprobado") { <text> style="color:blue" </text>  } else { <text> style="color:red" </text> }>
+                @a.estado
+            </td>
+            <td>@Html.ActionLink("Actualizar", "Delete", "Alumno", new { id_alumno = a.id }, new { @class = "btn btn-success" })</td>
+            <td>@Html.ActionLink("Eliminar", "DeleteAlumno", "Alumno", new { id_alumno = a.id }, new { @class = "btn btn-danger" })</td>
+        </tr>
+
+            }
+        }
+        else
+        {
+            <tr>
+                <td>
+                    <center>
+                        <b>No hay resultados para mostrar</b>
+                    </center>
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>
